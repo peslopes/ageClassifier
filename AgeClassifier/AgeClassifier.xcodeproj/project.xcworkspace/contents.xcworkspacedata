@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:mlTest.xcodeproj">
+      location = "self:AgeClassifier.xcodeproj">
    </FileRef>
 </Workspace>

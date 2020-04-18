@@ -1,15 +1,15 @@
 //
-//  mlTestTests.swift
-//  mlTestTests
+//  AgeClassifierTests.swift
+//  AgeClassifierTests
 //
 //  Created by Pedro Lopes on 18/04/20.
 //  Copyright © 2020 Pedro Lopes. All rights reserved.
 //
 
 import XCTest
-@testable import mlTest
+@testable import AgeClassifier
 
-class mlTestTests: XCTestCase {
+class AgeClassifierTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

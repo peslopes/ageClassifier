@@ -1,6 +1,6 @@
 //
 //  PhotoCaptureView.swift
-//  mlTest
+//  AgeClassifier
 //
 //  Created by Pedro Lopes on 18/04/20.
 //  Copyright © 2020 Pedro Lopes. All rights reserved.

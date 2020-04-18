@@ -1,13 +1,12 @@
 //
 //  ContentView.swift
-//  mlTest
+//  AgeClassifier
 //
 //  Created by Pedro Lopes on 18/04/20.
 //  Copyright © 2020 Pedro Lopes. All rights reserved.
 //
 
 import SwiftUI
-import CoreML
 
 struct ContentView: View {
     
@@ -18,9 +17,11 @@ struct ContentView: View {
         NavigationView{
             
             VStack {
+                if image != nil {
+                    self.detectImage(image: image)
                 
-                self.detectImage(image: image)
-                Image(uiImage: image ?? UIImage()).resizable()
+                    Image(uiImage: image!).resizable()
+                }
                 
                 Button("Open Camera"){
                     self.showImagePicker = true
@@ -38,7 +39,7 @@ struct ContentView: View {
     
     func detectImage(image: UIImage?) -> Text {
 
-        let model = elderReconizer_1()
+        let model = AgeClassifierMLModel()
         guard let image = image else {
             return Text("")
         }
@@ -75,48 +76,6 @@ struct ContentView: View {
       CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
 
       return pixelBuffer
-    }
-}
-
-struct ImagePicker : UIViewControllerRepresentable {
-    
-    @Binding var isShown    : Bool
-    @Binding var image      : UIImage?
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-        
-    }
-    
-    func makeCoordinator() -> ImagePickerCordinator {
-        return ImagePickerCordinator(isShown: $isShown, image: $image)
-    }
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-}
-
-class ImagePickerCordinator : NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-    
-    @Binding var isShown    : Bool
-    @Binding var image      : UIImage?
-    
-    init(isShown : Binding<Bool>, image: Binding<UIImage?>) {
-        _isShown = isShown
-        _image   = image
-    }
-    
-    //Selected Image
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        isShown = false
-    }
-    
-    //Image selection got cancel
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        isShown = false
     }
 }
 
